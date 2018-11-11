@@ -21,7 +21,14 @@ function convertToNumber(string) {
 
 function checkIfNumber(value) {
   var originalValue = value;
-  var myNumber = convertToNumber(value);
-  
+  var myNumber = convertToNumber(value);  
   printValue(myNumber, originalValue);
+}
+
+var myRE = /Hello/;
+var myString = "Hello, world.";
+if (myRE.test(myString)) {
+  console.log(myString + " - has " + myRE + " in it.");
+} else {
+  console.log(myString + " - doesn't have " + myRE + " in it.")
 }
