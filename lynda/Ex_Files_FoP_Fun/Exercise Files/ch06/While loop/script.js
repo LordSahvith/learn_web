@@ -13,9 +13,19 @@ while (list < 5) {
 var items = ["apple", "orange", "peach", "banana"];
 
 for (i = 0; i < items.length; i++) {
-  console.log(items[i]);
+  printValue(items[i]);
 }
 
 items.forEach(function(item) {
-  console.log(item);
+  printValue(item);
 });
+
+var test = 6;
+do {
+  printValue(test);
+  test++;
+} while (test <= 10);
+
+function printValue(value) {
+  console.log(value);
+}
