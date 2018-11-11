@@ -1,11 +1,11 @@
-var grade = "Premium";
+var grade = "Regular";
 
 if ( grade === "Regular") {
-     alert("It's $3.15");
+     console.log("It's $3.15");
 }
 if ( grade === "Premium") {
-     alert("It's $3.35");
+     console.log("It's $3.35");
 }
 if ( grade === "Diesel") {
-     alert("It's $3.47");
+     console.log("It's $3.47");
 }
