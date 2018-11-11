@@ -1,8 +1,20 @@
-function addTwoNumbers() {
-   	var a = 5;
-	var b = 10;
-	var result = a + b;
-	alert(result);
+function addTwoNumbers(a, b) {
+  var result = a + b;
+  printValue(result);
 }
 
-addTwoNumbers();
+function getNumber(a, b) {
+  return a + b;
+}
+
+function printValue(a) {
+  console.log(a);
+}
+
+var a = 5;
+var b = 10;
+
+addTwoNumbers(a * 3, b + 4 - a);
+
+var x = getNumber(a, b);
+printValue(x);
