@@ -8,6 +8,11 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+.hero {
+  height: 100vh;
+  background-color: #ddd;
+}
+
 .main-area {
   margin: 40px;
 }
@@ -91,13 +96,13 @@ body {
   .headline,
   .subcopy {
     transition: all .4s;
-    transform: translateY(50px);
+    transform: translateY(20px);
   }
 
   .card:hover .icon,
   .card:hover .headline,
   .card:hover .subcopy {
-    transform: translateY(-50px);
+    transform: translateY(-60px);
   }
 
   .card:hover {
