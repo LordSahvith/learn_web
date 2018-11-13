@@ -34,9 +34,42 @@ body {
 
 .content {
   margin: 40px;
+  display: flex;
+  flex-direction: column;
 }
+
+.menu {
+  /*  display: flex;*/
+  background-color: #eee;
+  padding: 20px;
+  position: relative;
+}
+
+.menu li {
+  list-style: none;
+}
+
+.content-docs {
+  display: flex;
+}
+
+.list {
+  /*  position: absolute;*/
+}
+
+.fixed {
+  position: fixed;
+  top: 100px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 100px;
+}
+
+.list ul {}
 
 footer {
   background-color: #aaa;
-  height: 100px;
+  height: 900px;
 }

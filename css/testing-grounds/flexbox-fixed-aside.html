@@ -22,24 +22,7 @@
 
   <main class="main-area">
 
-    <div class="content">
-
-      <aside class="menu">
-
-        <nav class="list">
-
-          <ul>
-            <li class="list-item">Item</li>
-            <li class="list-item">Item</li>
-            <li class="list-item">Item</li>
-            <li class="list-item">Item</li>
-            <li class="list-item">Item</li>
-            <li class="list-item">Item</li>
-          </ul>
-
-        </nav>
-
-      </aside>
+    <section class="content">
 
       <section class="content-docs">
 
@@ -61,9 +44,26 @@
 
         </div>
 
+        <aside class="menu">
+
+          <nav class="list">
+
+            <ul>
+              <li class="list-item">Item</li>
+              <li class="list-item">Item</li>
+              <li class="list-item">Item</li>
+              <li class="list-item">Item</li>
+              <li class="list-item">Item</li>
+              <li class="list-item">Item</li>
+            </ul>
+
+          </nav>
+
+        </aside>
+
       </section>
 
-    </div>
+    </section>
 
   </main>
 
@@ -75,12 +75,35 @@
 
   <script>
     (function($) {
+      var $pageHeight = $(document).innerHeight();
 
       $(window).resize(function() {
         var screenWidth = window.innerWidth;
+        $pageHeight = $(document).innerHeight();
+        console.log($pageHeight);
         $("#screen-width span").html(screenWidth);
       });
 
+      $(window).scroll(function() {
+        var $heroHeight = $('.hero').height();
+
+        if ($(window).scrollTop() > $heroHeight) {
+          $('.list').addClass('fixed');
+        } else {
+          $('.list').removeClass('fixed');
+        }
+
+        if ($(window).scrollTop() > $pageHeight - 1900) {
+          console.log('hello1');
+          $('.list').css({
+            "position": "absolute",
+            "bottom": $pageHeight - 1900
+          });
+        } else {
+          console.log('hello2');
+          //          $('.list').addClass('fixed');
+        }
+      });
 
     })(jQuery);
   </script>
