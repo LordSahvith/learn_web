@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.hero {
+  height: 100vh;
+  background-color: #ddd;
+}
+
+#screen-width {
+  top: 0;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  font-size: 10px;
+  background-color: #ddd;
+  padding: 20px;
+}
+
+#screen-width span {
+  color: red;
+}
+
+.main-area {
+  margin: 40px 40px 100px;
+  max-width: 980px;
+}
+
+.content {
+  margin: 40px;
+}
+
+footer {
+  background-color: #aaa;
+  height: 100px;
+}
