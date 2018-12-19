@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Test: EasyPress Heat Settings</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--  <script src="test.js"></script>-->
+  <!--  <script src="test.json"></script>-->
+</head>
+
+<body>
+
+
+
+  <select id="material">
+    <option disabled selected value> -- select an option -- </option>
+    <option value="everyday">Everyday Iron-On<sup>&trade;</sup> / Lite / Metallic</option>
+    <option value="foil">Foil</option>
+    <option value="fusibleFabric">Fusible Fabric</option>
+    <option value="glitter">Glitter</option>
+    <option value="holographic">Holographic Sparkle</option>
+    <option value="designs">Iron-On Designs<sup>&trade;</sup></option>
+    <option value="patterned">Patterned Iron-On<sup>&trade;</sup></option>
+    <option value="sportflex">SportFlex Iron-On<sup>&trade;</sup></option>
+  </select>
+
+  <select id="base">
+    <option disabled selected value> -- select an option -- </option>
+    <option value="burlap">Burlap</option>
+    <option value="cardstock">Cardstock</option>
+    <option value="chipboard">Chipboard</option>
+    <option value="corkboard">Corkboard</option>
+    <option value="cotton">100% Cotton</option>
+    <option value="canvas">Cotton Canvas / Muslin</option>
+    <option value="cottonPoly">Cotton / Poly blend</option>
+    <option value="fauxLeather">Faux Leather</option>
+    <option value="felt">Felt</option>
+    <option value="mesh">Mesh</option>
+    <option value="neoprene">Neoprene</option>
+    <option value="nylon">Nylon</option>
+    <option value="polyester">Polyester</option>
+    <option value="silk">Silk</option>
+    <option value="wood">Wood</option>
+  </select>
+
+  <p id="backing">
+    <input type="radio" id="mat" name="backing" value="mat">
+    <label class="p1" for="mat">Cricut EasyPress Mat</label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" id="towel" name="backing" value="towel">
+    <label class="p1" for="towel">Towel</label>
+  </p>
+
+  <p id="demo"></p>
+
+  <script>
+    (function($) {
+      $(document).ready(function() {
+
+        var ironOnMaterial = 'everyday';
+        var baseMaterial = 'burlap';
+        var surface = 'mat';
+        var intructions1 = ironOnMaterial + '.' + baseMaterial;
+        var intructions2 = intructions1 + '.' + surface;
+
+        var everyday = {
+          "burlap": {
+            "wash": preWash(false),
+            "mat": {
+              "temp": temperature(315, 155),
+              "duration": seconds(50, "gentle")
+            },
+            "towel": {
+              "temp": temperature(330, 165),
+              "duration": seconds(30, "gentle")
+            },
+            "peel": peel("warm"),
+            "care": care(false, 2)
+          },
+          "canvas": {
+            "wash": preWash(true),
+            "mat": {
+              "temp": temperature(340, 170),
+              "duration": seconds(30, "gentle")
+            },
+            "towel": {
+              "temp": temperature(340, 170),
+              "duration": seconds(30, "gentle")
+            },
+            "peel": peel("cold"),
+            "care": care(false, 1)
+          }
+        };
+
+        /* use this naming convention when creating new time images
+           https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/*name*.png         
+        */
+
+        function preWash(isWashed) {
+          if (isWashed) {
+            return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/wash.png" class="easypress-icon-image" alt="Prewash Instructions" /><p>Prewash the item before application without fabric softener.</p></div>';
+          } else {
+            return '';
+          }
+        }
+
+        function temperature(fahrenheit, celsius) {
+          return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/temperature.png" class="easypress-icon-image" alt="Prewash Instructions" /><p>Set temp to <strong>' + fahrenheit + '&nbsp;°F (' + celsius + '&nbsp;°C)' + '</strong>.</p></div>';
+        }
+
+        function preHeat() {
+          return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/heat.png" class="easypress-icon-image" alt="Prewheat instructions" /><p>Preheat for <strong>5&nbsp;seconds</strong>.</p></div>';
+        }
+
+        function seconds(seconds, pressure) {
+          if (seconds <= 50) {
+            return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/' + seconds + '-sec.png" class="easypress-icon-image" alt="Prewash Instructions" /><p>Apply heat + <strong>' + pressure + ' pressure</strong> for <strong>' + seconds + ' seconds</strong></p></div>';
+          } else {
+            return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/time.png" class="easypress-icon-image" alt="Prewash Instructions" /><p>Apply heat + <strong>' + pressure + ' pressure</strong> for <strong>' + seconds + ' seconds</strong></p></div>';
+          }
+        }
+
+        function peel(temp) {
+          return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/' + temp + '.png" class="easypress-icon-image" alt="Warm Peel" /><p><strong>Peel off ' + temp + '</strong> and&nbsp;enjoy!</p></div>'
+        }
+
+        function postHeat() {
+          return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/heat.png" class="easypress-icon-image" alt="Prewheat instructions" /><p>Flip material and press for <strong>15&nbsp;seconds</strong>.</p></div>';
+        }
+
+        function care(care, process) {
+          var process1 = "Allow 24 hours after application before washing. Hand wash inside out in cold water. Do not bleach. Hang dry only.";
+          var process2 = "Allow 24 hours after application before washing. Wash and tumble dry inside out. Do not bleach.";
+
+          if (care) {
+            if (process === 1) {
+              return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/wash.png" class="easypress-icon-image" alt="Wash and Care Instructions" /><p>' + process1 + '</p></div>';
+            } else if (process === 2) {
+              return '<div class="easypress-instructions-row"><img src="https://d2e2oszluhwxlw.cloudfront.net/help/EasyPress/EasyPress-Interactive-Chart/wash.png" class="easypress-icon-image" alt="Wash and Care Instructions" /><p>' + process2 + '</p></div>';
+            } else {
+              return '';
+            }
+          } else {
+            return '';
+          }
+        }
+
+        function updateInstructions() {
+          if (ironOnMaterial != '' &&
+            baseMaterial != '' &&
+            surface != '') {
+            document.getElementById("demo").innerHTML = eval(intructions1 + '.wash') + eval(intructions2 + '.temp') + preHeat() + eval(intructions2 + '.duration') + postHeat() + eval(intructions1 + '.peel') + eval(intructions1 + '.care');
+          } else {
+            document.getElementById("demo").innerHTML = '';
+          }
+        }
+
+        //        document.getElementById("demo").innerHTML = everyday.canvas.wash + everyday.canvas.mat.temp + preHeat() + everyday.canvas.mat.duration + postHeat() + everyday.canvas.peel + everyday.canvas.care;
+
+        // INPUT & STATE CHANGE //
+        // Handle backing change
+        $('input[name="backing"]').change(function() {
+          surface = this.value;
+          // Update instructions
+          updateInstructions();
+        });
+        // Handle material change
+        $('#material').change(function() {
+          ironOnMaterial = this.value;
+          // Update instructions
+          updateInstructions();
+        });
+        // Handle base change
+        $('#base').change(function() {
+          baseMaterial = this.value;
+          // Update instructions
+          updateInstructions();
+        });
+
+      });
+    })(jQuery);
+  </script>
+
+</body>
+
+</html>
